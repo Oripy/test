@@ -8,20 +8,16 @@ var app = express();
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
- 
-server.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", port " + server_port )
-});
 
 // Set up the server
 // process.env.PORT is related to deploying on heroku
-var server = app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, listen);
+var server = app.listen(server_port, listen);
 
 // This call back just tells us that the server has started
 function listen() {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://' + host + ':' + port);
+  //var host = server.address().address;
+  //var port = server.address().port;
+  console.log('Example app listening at http://' + server_ip_address + ':' + server_port);
 }
 
 app.use(express.static('public'));
